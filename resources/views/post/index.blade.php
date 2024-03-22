@@ -8,6 +8,7 @@
                 <th>タイトル</th>
                 <th>内容</th>
                 <th>作成日</th>
+                <th>編集</th>
             </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->body }}</td>
                     <td>{{ $post->created_at->format('Y-m-d') }}</td>
+                    <td><a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info">編集</a></td>
                 </tr>
             @endforeach
         </tbody>
