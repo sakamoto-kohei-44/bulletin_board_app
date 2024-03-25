@@ -57,4 +57,11 @@ class PostController extends Controller
         // リダイレクト処理
         return redirect()->route('post.index')->with('success', '投稿が編集されました');
     }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+        return redirect()->route('post.index')->with('success', '投稿が削除されました');
+    }
 }
