@@ -25,13 +25,12 @@ Route::get('/create', [App\Http\Controllers\PostController::class, 'create'])->n
 Route::post('/store', [App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 Route::get('/edit/{id}', [App\Http\Controllers\PostController::class, 'edit'])->name('post.edit');
 Route::put('/update/{id}', [App\Http\Controllers\PostController::class, 'update'])->name('post.update');
+Route::delete('/destroy/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('post.destroy');
 
-Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
-Route::get('/users/{id}', [App\Http\Controllers\UserController::class, 'show'])->name('users.show');
-Route::get('/users/{id}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
-
-Route::get('adminlte', function () {
-    return view('adminlte');
+Route::prefix('admin')->group(function () {
+    Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin.users.show');
+    Route::get('/users/{id}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin.users.edit');
+    Route::put('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
 });
